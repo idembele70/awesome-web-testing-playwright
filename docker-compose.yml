@@ -1,0 +1,8 @@
+services:
+  trello-app:
+    container_name: front-end
+    build: 
+      context: .
+      dockerfile: Dockerfile.front
+    ports: 
+      - 3000:3000

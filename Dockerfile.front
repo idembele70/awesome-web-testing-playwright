@@ -1,0 +1,16 @@
+FROM node:lts-bookworm-slim
+
+WORKDIR /app
+
+RUN apt update && \
+    apt upgrade -y && \
+    apt install -y git && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN git clone https://github.com/idembele70/trelloapp-vue-vite-ts.git /app
+
+RUN npm install
+
+EXPOSE 3000
+
+CMD [ "npm", "start"]
