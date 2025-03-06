@@ -1,36 +1,38 @@
 import { test, expect } from './fixtures/trello-test';
 
-test.beforeAll(async ({request}) => {
-  // Clear the database
-  await request.post('http://localhost:3000/api/reset')
-})
+test.describe('Trello-like board', () => {
+  const BOARD_NAME = 'Chores';
+  const LIST_NAME = 'TODO';
 
-test('Create a new board with a list and cards', async ({ getStartedPage, boardPage, myBoardsPage }) => {
-
-  await test.step('It should load the app', async () => {
-    await getStartedPage.load();
+  test.beforeEach(async ({ request, getStartedPage }) => {
+    // Clear the database
+    await request.post('http://localhost:3000/api/reset')
+    await getStartedPage.load()
+    await getStartedPage.createFirstBoard(BOARD_NAME)
+  });
+  test('should create the first board', async ({ boardPage }) => {
+    await boardPage.expectNewBoardLoaded(BOARD_NAME)
   });
 
-  await test.step('Create a new board', async () => {
-    await getStartedPage.createFirstBoard('Chores');
-    await boardPage.expectNewBoardLoaded('Chores');
+  test('should create the first list in a board', async ({ boardPage }) => {
+    await boardPage.addList(LIST_NAME)
+    await expect(boardPage.listName).toHaveValue(LIST_NAME)
   });
 
-  await test.step('It should create a new list', async () => {
-    await boardPage.addList('TODO');
-    await expect(boardPage.listName).toHaveValue('TODO')
-  });
-
-  await test.step('Add cards to the list', async () => {
+  test('should create a list with multiple cards', async ({ boardPage }) => {
+    await boardPage.addList(LIST_NAME)
     await boardPage.addCardToList(0, 'Buy groceries')
     await boardPage.addCardToList(0, 'Mow the lawn')
     await boardPage.addCardToList(0, 'Walk the dog')
     await expect(boardPage.cardTexts).toHaveText(
-      ['Buy groceries', 'Mow the lawn', 'Walk the dog'])
-  });
+      ['Buy groceries', 'Mow the lawn', 'Walk the dog']
+    )
+  })
 
-  await test.step('Navigate to the home page', async () => {
+  test('should navigate to home from a board', async ({ boardPage, myBoardsPage }) => {
     await boardPage.goHome()
-    await myBoardsPage.expectLoaded(['Chores'])
+    await myBoardsPage.expectLoaded([BOARD_NAME])
   });
 });
+
+
