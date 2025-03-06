@@ -4,13 +4,12 @@ test.describe('Trello-like board', () => {
   const BOARD_NAME = 'Chores';
   const LIST_NAME = 'TODO';
 
-  test.beforeEach(async ({ request, getStartedPage }) => {
-    // Clear the database
-    await request.post('http://localhost:3000/api/reset')
-    await getStartedPage.load()
-    await getStartedPage.createFirstBoard(BOARD_NAME)
+  test.beforeEach(async ({ myBoardsPage }) => {
+    const randomNumber = Math.trunc(Math.random() * 10000)
+    await myBoardsPage.load()
+    await myBoardsPage.openBoard(BOARD_NAME)
   });
-  test('should create the first board', async ({ boardPage }) => {
+  test('should display the new board', async ({ boardPage }) => {
     await boardPage.expectNewBoardLoaded(BOARD_NAME)
   });
 
