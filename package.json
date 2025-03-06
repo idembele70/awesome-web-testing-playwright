@@ -7,6 +7,9 @@
     "frontend:start": "docker compose up",
     "frontend:reset": "docker compose down",
     "test": "npx playwright test",
+    "test:chromium": "npx playwright test --project=chromium",
+    "test:firefox": "npx playwright test --project=firefox",
+    "test:webkit": "npx playwright test --project=webkit",
     "test:ui": "npx playwright test --ui"
   },
   "keywords": [],
