@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "services-front:start": "docker compose up"
+    "frontend:start": "docker compose up",
+    "frontend:reset": "docker compose down",
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui"
   },
   "keywords": [],
   "author": "",
