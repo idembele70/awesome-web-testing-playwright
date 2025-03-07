@@ -4,6 +4,12 @@ test.describe('Trello-like board', () => {
   const BOARD_NAME = 'Chores';
   const LIST_NAME = 'TODO';
 
+  test.beforeAll(async ({request, getStartedPage})=> {
+    await request.post('http://localhost:3000/api/reset');
+    await getStartedPage.load();
+    await getStartedPage.createFirstBoard(BOARD_NAME)
+  })
+
   test.beforeEach(async ({ myBoardsPage }) => {
     const randomNumber = Math.trunc(Math.random() * 10000)
     await myBoardsPage.load()
