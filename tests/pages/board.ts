@@ -3,6 +3,8 @@ import { expect, Locator, Page } from "@playwright/test";
 export default class BoardPage {
   readonly page: Page;
   readonly boardTitle: Locator;
+  readonly boardOptionsButton: Locator;
+  readonly deleteBoardButton: Locator;
   readonly enterListTitle: Locator;
   readonly boardLists: Locator;
   readonly listName: Locator;
@@ -13,8 +15,9 @@ export default class BoardPage {
   readonly homeButton: Locator;
 
   constructor(page: Page) {
-    this.page = page;
     this.boardTitle = page.locator('input[name="board-title"]');
+    this.boardOptionsButton = page.locator('[data-cy="board-options"]');
+    this.deleteBoardButton = page.locator('[data-cy="delete-board"]');
     this.enterListTitle = page.getByPlaceholder('Enter list title...');
     this.boardLists = page.locator('[data-cy="list"]');
     this.listName = page.locator('[data-cy="list-name"]');
@@ -23,6 +26,7 @@ export default class BoardPage {
     this.addCard = page.getByRole('button', {name: 'Add card'});
     this.cardTexts = page.locator('[data-cy="card-text"]');
     this.homeButton = page.getByRole('navigation').getByRole('button');
+    this.page = page;
   }
   async expectNewBoardLoaded(name: string) {
     await expect(this.boardTitle).toHaveValue(name);
@@ -35,14 +39,23 @@ export default class BoardPage {
     await this.enterListTitle.press('Enter');
   }
 
-  async addCardToList(listIndex:number, cardName: string) {
+  public async addCardToList(listIndex:number, cardName: string) {
     await this.boardTitle.click() // unfocus
     await this.addAnotherCard.nth(listIndex).click();
     await this.enterCardTitle.fill(cardName);
     await this.addCard.click();
   }
 
-  async goHome() {
+  public async goHome() {
     await this.homeButton.click()
+  }
+
+   /**
+   * deleteBoard
+   */
+   public async deleteBoard() {
+    await this.boardOptionsButton.click();
+    await this.deleteBoardButton.click();
+    await this.page.waitForURL('http://localhost:3000/')
   }
 };

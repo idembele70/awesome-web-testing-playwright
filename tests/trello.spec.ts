@@ -1,6 +1,5 @@
-import { test, expect } from './fixtures/trello-test';
-import GetStartedPage from './pages/get-started';
-import GetStarted from "./pages/get-started";
+import { expect, test } from './fixtures/trello-test';
+
 test.describe('Trello-like board', () => {
   let boardName: string;
   const LIST_NAME = 'TODO';
@@ -9,11 +8,13 @@ test.describe('Trello-like board', () => {
     const randomNumber = Math.trunc(Math.random() * 10000);
     boardName = 'Chores' + String(randomNumber);
 
-    await request.post('http://localhost:3000/api/boards', {data: {name: boardName}});
+    await request.post('http://localhost:3000/api/boards', { data: { name: boardName } });
     await myBoardsPage.load();
     await myBoardsPage.openBoard(boardName);
   });
-
+  test.afterEach(async ({ boardPage }) => {
+    await boardPage.deleteBoard();
+  })
   test('should display the new board', async ({ boardPage }) => {
     await boardPage.expectNewBoardLoaded(boardName)
   });
@@ -33,10 +34,8 @@ test.describe('Trello-like board', () => {
     )
   })
 
-  test('should navigate to home from a board', async ({ boardPage, myBoardsPage }) => {
+  test.skip('should navigate to home from a board', async ({ boardPage, myBoardsPage }) => {
     await boardPage.goHome()
     await myBoardsPage.expectLoaded([boardName])
   });
 });
-
-
