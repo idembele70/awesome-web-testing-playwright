@@ -1,22 +1,21 @@
 import { test, expect } from './fixtures/trello-test';
-
+import GetStartedPage from './pages/get-started';
+import GetStarted from "./pages/get-started";
 test.describe('Trello-like board', () => {
-  const BOARD_NAME = 'Chores';
+  let boardName: string;
   const LIST_NAME = 'TODO';
 
-  test.beforeAll(async ({request, getStartedPage})=> {
-    await request.post('http://localhost:3000/api/reset');
-    await getStartedPage.load();
-    await getStartedPage.createFirstBoard(BOARD_NAME)
-  })
+  test.beforeEach(async ({ myBoardsPage, request }) => {
+    const randomNumber = Math.trunc(Math.random() * 10000);
+    boardName = 'Chores' + String(randomNumber);
 
-  test.beforeEach(async ({ myBoardsPage }) => {
-    const randomNumber = Math.trunc(Math.random() * 10000)
-    await myBoardsPage.load()
-    await myBoardsPage.openBoard(BOARD_NAME)
+    await request.post('http://localhost:3000/api/boards', {data: {name: boardName}});
+    await myBoardsPage.load();
+    await myBoardsPage.openBoard(boardName);
   });
+
   test('should display the new board', async ({ boardPage }) => {
-    await boardPage.expectNewBoardLoaded(BOARD_NAME)
+    await boardPage.expectNewBoardLoaded(boardName)
   });
 
   test('should create the first list in a board', async ({ boardPage }) => {
@@ -36,7 +35,7 @@ test.describe('Trello-like board', () => {
 
   test('should navigate to home from a board', async ({ boardPage, myBoardsPage }) => {
     await boardPage.goHome()
-    await myBoardsPage.expectLoaded([BOARD_NAME])
+    await myBoardsPage.expectLoaded([boardName])
   });
 });
 
