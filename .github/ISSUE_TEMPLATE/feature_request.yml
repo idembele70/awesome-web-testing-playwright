@@ -43,14 +43,3 @@ body:
       description: Add any other context or screenshots about the feature request here.
     validations:
       required: false
-
-  - type: dropdown
-    attributes:
-      label: PR Submission Intent
-      description: If the feature request is approved, would you be willing to submit a PR?
-      options:
-        - Yes
-        - No
-      default: Yes
-    validations:
-      required: true
