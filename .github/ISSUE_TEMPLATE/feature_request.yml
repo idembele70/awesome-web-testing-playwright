@@ -2,7 +2,7 @@ name: 🚀 Feature Request
 description: You have a specific idea to suggest for this project 💡
 title: "💡 feat: <title>"
 labels: enhancement
-projects: ['Awesome-playwright-test']
+projects: ['Awesome-playwright-tests']
 assignees:
   - idembele70
 body:
