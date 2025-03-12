@@ -1,10 +1,10 @@
 name: 🚀 Feature Request
 description: You have a specific idea to suggest for this project 💡
 title: "💡 feat: <title>"
-labels: Enhancement
-projects: ['Awesome-playwright-test']
+labels: enhancement
+projects: ['idembele70/8']
 assignees:
-  - idembele26
+  - idembele70
 body:
 
   - type: markdown
@@ -43,14 +43,3 @@ body:
       description: Add any other context or screenshots about the feature request here.
     validations:
       required: false
-
-  - type: dropdown
-    attributes:
-      label: PR Submission Intent
-      description: If the feature request is approved, would you be willing to submit a PR?
-      options:
-        - Yes
-        - No
-      default: Yes
-    validations:
-      required: true
