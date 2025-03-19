@@ -15,3 +15,6 @@ projects: 'idembele70/8'
 
 ### Additional Context
 <!-- Add any other context or screenshot about the PR here. -->
+
+### I'm not a dummy, so I've checked this
+- [ ] I made a self review
