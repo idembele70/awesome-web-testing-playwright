@@ -10,6 +10,15 @@ This app targets teams, project managers, and individuals looking to organize ta
 ## Goals:
 To provide a simplified and user-friendly project management platform that enhances productivity, organization and team collaboration.
 
+## Glossary:
+
+| Symbol | Meaning                      | Additional Context                      |
+|--------|------------------------------|-----------------------------------------|
+|✅      | Done                         | Task is completed successfully.         |
+|❌      | Undone                       | Task is not yet completed.              |
+|🟢      | Criticity 3 (Low Priority)   | Feature used monthly.                   |
+|🟠      | Criticity 2 (Medium Priority)| Feature used weekly.                    |
+|🔴      | Criticity 1 (High Priority)  | Feature used daily.                     |
 
 ## Use Case Overview
 
