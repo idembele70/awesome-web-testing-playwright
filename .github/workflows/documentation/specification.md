@@ -13,14 +13,14 @@ To provide a simplified and user-friendly project management platform that enhan
 
 ## Use Case Overview
 
-| Serial No | Pages             | Related Path (Page URL)    | Unique Code       | Functionality Name        | Documentation      | Automated Test | Comments |
+| Serial No | Pages             | Related Path (Page URL)    | Unique Code       | Functionality Name        | Documentation      | Automated Test | Criticity | Comments |
 |-----------|-------------------|----------------------------|-------------------|---------------------------|--------------------|----------------|----------|
-| 01        | Signup            | /signup                    | S-001              | User Signup               | ✅                  | ❌              |          |
-| 02        | Login             | /login                     | 02-L              | User Login                | ❌                  | ❌              |          |
-| 03        | Board List        | /                          | 03-BL             | Display Board List        | ❌                  | ❌              |          |
-| 04        | Board             | /board/:boardId              | 04-B              | Manage Board              | ❌                  | ❌              |          |
-| 05        | Pricing           | /pricing                   | 05-P              | Pricing Information       | ❌                  | ❌              |          |
-| 06        | Not Found         | /*                         | 06-NF             | Page Not Found            | ❌                  | ❌              |          |
+| 01        | Signup            | /signup                    | S-001              | User Signup               | ✅            |      | ❌              |          |
+| 02        | Login             | /login                     | L-002              | User Login                | ❌            |      | ❌              |          |
+| 03        | Board List        | /                          | BL-003             | Display Board List        | ❌            |      | ❌              |          |
+| 04        | Board             | /board/:boardId              | B-004              | Manage Board              | ❌            |      | ❌              |          |
+| 05        | Pricing           | /pricing                   | P-005              | Pricing Information       | ❌            |      | ❌              |          |
+| 06        | Not Found         | /*                         | NF-006             | Page Not Found            | ❌            |      | ❌              |          |
 
 Note: All the paths will follow the **BaseURL**: http://locahost:3000
 
